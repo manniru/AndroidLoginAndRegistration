@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, LoginActivity!</string>
+    <string name="app_name">AndroidLoginAndRegistration</string>
+    <string name="sexo">Sexo</string>
+    
+    <string name="sex_spinner_prompt">Selecione...</string>
+    
+    <string-array name="sex_arrays">
+        <item>Masculino</item>
+        <item>Feminino</item>
+    </string-array>
+</resources>
