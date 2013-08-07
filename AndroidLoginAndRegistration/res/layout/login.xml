@@ -61,11 +61,12 @@
 		  		android:singleLine="true"
 		  		android:password="true"/>
 		  <!-- Login button -->	
-		  <Button android:id="@+id/btnLogin" 
+		  <Button android:id="@+id/btnAtividade" 
 		  		android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
 		  		android:layout_marginTop="10dip"
-		  		android:text="Login"/>
+		  		android:text="Login"
+		  		android:onClick="mainMenu"/>
 		  <!-- Link to Registration Screen -->		
 		  <TextView android:id="@+id/link_to_register" 
 		  		android:layout_width="fill_parent"

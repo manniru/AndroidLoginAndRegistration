@@ -24,4 +24,9 @@ public class LoginActivity extends Activity {
 			}
 		});
     }
+    
+    public void mainMenu (View v) {
+    	Intent i = new Intent(getApplicationContext(), MainMenuActivity.class);
+		startActivity(i);
+    }
 }

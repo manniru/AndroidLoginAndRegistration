@@ -18,8 +18,17 @@
         <activity android:name=".RegisterActivity"
         		  android:label="Register New Account"></activity>
         
+        <!--  Entry for InitialInfoActivity.class -->
         <activity android:name=".InitialInfoActivity"
         		  android:label="Informações Iniciais"></activity>
+        
+        <!--  Entry for MainMenuActivity.class -->
+        <activity android:name=".MainMenuActivity"
+        		  android:label="Menus Principais"></activity>
+        
+        <!--  Entry for ActivitiesActivity.class -->
+        <activity android:name=".ActivitiesActivity"
+        		  android:label="Lista de Atividades"></activity>
 
     </application>
 </manifest>
