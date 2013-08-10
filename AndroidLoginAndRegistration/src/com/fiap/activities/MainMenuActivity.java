@@ -1,4 +1,4 @@
-package com.androidhive.loginandregister;
+package com.fiap.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +15,7 @@ public class MainMenuActivity extends Activity {
     }
     
     public void activities (View v) {
-    	Intent i = new Intent(getApplicationContext(), ActivitiesActivity.class);
+    	Intent i = new Intent(getApplicationContext(), GPSActivity.class);
 		startActivity(i);
     }
     

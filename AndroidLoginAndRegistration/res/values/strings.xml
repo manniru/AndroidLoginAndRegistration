@@ -10,4 +10,42 @@
         <item>Masculino</item>
         <item>Feminino</item>
     </string-array>
+    
+    <string name="tela_inicial">Android Spring Social</string>
+    <string name="tela_login_facebook">Login Facebook</string>
+    <string name="tela_post_facebook">Postagem Mural Facebook</string>
+	<string name="tela_login_twitter">Login Twitter</string>
+    <string name="tela_post_twitter">Postagem Mural Twitter</string>
+	<string name="tela_contato_twitter">Contatos do Twitter</string>
+ 	<string name="tela_convite">Convite</string>   
+
+    <string name="calibrando">Calibrando&#8230;</string>
+    <string name="tempo">Tempo</string>
+    <string name="default_tempo">0.00 min</string>
+    <string name="calorias">Calorias</string>
+    <string name="default_calorias">0.00</string>
+    <string name="distancia">Distância percorrida</string>
+    <string name="default_distancia">0.00 km</string>
+    <string name="velocidadeMedia">Velocidade média</string>
+    <string name="default_velocidadeMedia">0.00 km/h</string>
+	<string name="velocidadeMaxima">Velocidade máxima</string>
+   	<string name="default_velocidadeMaxima">0.00 km/h</string>
+   	<string name="web_service">Web Service</string>
+   	<string name="default_web_service">default</string>
+    
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    
+    <string name="mensagem">Mensagem</string>
+    <string name="contatos">Contatos</string>
+    
+    <string name="iniciar">Iniciar</string>
+	<string name="parar">Parar</string>
+	<string name="convidar">Convidar</string>
+    <string name="logar">Logar</string>
+    <string name="enviar">Enviar</string>
+    <string name="continuar">Continuar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <string name="salvar_senha">Salvar Senha?</string>
 </resources>

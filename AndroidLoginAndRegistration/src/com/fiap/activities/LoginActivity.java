@@ -1,4 +1,4 @@
-package com.androidhive.loginandregister;
+package com.fiap.activities;
 
 import android.app.Activity;
 import android.content.Intent;

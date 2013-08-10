@@ -1,4 +1,4 @@
-package com.androidhive.loginandregister;
+package com.fiap.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,11 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class RegisterActivity extends Activity {
+public class InitialInfoActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.initial_info);
         
         TextView loginScreen = (TextView) findViewById(R.id.link_to_login);
         
@@ -27,7 +27,7 @@ public class RegisterActivity extends Activity {
     }
     
     public void register(View v) {
-    	Intent i = new Intent(getApplicationContext(), InitialInfoActivity.class);
+    	Intent i = new Intent(getApplicationContext(), LoginActivity.class);
 		startActivity(i);
     }
     
