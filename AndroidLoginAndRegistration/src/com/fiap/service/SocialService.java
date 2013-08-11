@@ -32,11 +32,11 @@ public abstract class SocialService {
 	public static void init(Context context) {
 		connectionFactoryRegistry = new ConnectionFactoryRegistry();
 		connectionFactoryRegistry.addConnectionFactory(new FacebookConnectionFactory(
-				MainApplication.getContext().getString(R.string.facebook_app_id), 
-				MainApplication.getContext().getString(R.string.facebook_app_secret)));
+				context.getString(R.string.facebook_app_id), 
+				context.getString(R.string.facebook_app_secret)));
 		connectionFactoryRegistry.addConnectionFactory(new TwitterConnectionFactory(
-				MainApplication.getContext().getString(R.string.twitter_consumer_key), 
-				MainApplication.getContext().getString(R.string.twitter_consumer_key_secret)));
+				context.getString(R.string.twitter_consumer_key), 
+				context.getString(R.string.twitter_consumer_key_secret)));
 
 		SQLiteConnectionRepositoryHelper repositoryHelper = new SQLiteConnectionRepositoryHelper(context);
 		connectionRepository = new SQLiteConnectionRepository(repositoryHelper,

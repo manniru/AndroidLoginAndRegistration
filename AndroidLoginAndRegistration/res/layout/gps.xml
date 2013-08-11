@@ -99,6 +99,22 @@
             android:layout_height="wrap_content"
             android:text="@string/default_web_service" />
     </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Location:" />
+
+        <TextView
+            android:id="@+id/text_locaton_gps"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text_gps_velocidade"
@@ -121,6 +137,14 @@
             android:layout_weight="1"
             android:text="@string/iniciar"
             android:enabled="false" />
+        
+        <Button
+            android:id="@+id/button_map"
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="goToMap"
+            android:text="Mapa" />
         
         <Button
             android:id="@+id/button_gps_convidar"

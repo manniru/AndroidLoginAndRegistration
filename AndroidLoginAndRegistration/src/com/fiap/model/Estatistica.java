@@ -35,7 +35,7 @@ public class Estatistica {
 
     	long milisegundosAtual = System.currentTimeMillis();	
 		
-    	distanciaTotal += Math.abs(GPSService.calcularDistanciaEntre(latitude, longitude, latitudeAtual, longitudeAtual) * KM_MULTIPLIER); 
+    	distanciaTotal += Math.abs(GPSService.calcDistanceBetween(latitude, longitude, latitudeAtual, longitudeAtual) * KM_MULTIPLIER); 
 
 		velocidade = (velocidadeAtual * HOUR_MULTIPLIER) * KM_MULTIPLIER;
     	velocidadeMaxima = velocidade > velocidadeMaxima ? velocidade : velocidadeMaxima;

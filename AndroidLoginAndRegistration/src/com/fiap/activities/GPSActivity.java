@@ -14,6 +14,7 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import com.fiap.event.GPSEvent;
 import com.fiap.model.Estatistica;
 import com.fiap.service.GPSService;
+import com.fiap.service.SocialService;
 
 public class GPSActivity extends BaseActivity {
     
@@ -33,7 +35,7 @@ public class GPSActivity extends BaseActivity {
 	
 	private static final String ServletUrl="http://ec2-107-21-178-180.compute-1.amazonaws.com:8080/TesteServlet/TesteServlet";
 	
-	private GPSService gpsService = new GPSService();
+	private GPSService gpsService;
 	
 	private Bundle bundle;
 	
@@ -46,6 +48,7 @@ public class GPSActivity extends BaseActivity {
 	private Button btnIniciar;
 	private Button btnConvidar;
 	private TextView webServiceTextView;
+	private TextView txtLocation;
 	
 	private Estatistica estatistica;
 
@@ -54,23 +57,30 @@ public class GPSActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.gps);
+		SocialService.init(getApplicationContext());
 		
+		setContentView(R.layout.gps);
 		bundle = new Bundle();
-
+		
+		gpsService = GPSService.getInstance();	
+		
 		prepararTela();
-
+		
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
 		gpsService.setEvent(new GPSEvent() {
 			
 			public void onGPSUpdate(Location location) {
 				if (calibrando) {
 					calibrando = false;
 					btnIniciar.setEnabled(true);
-					
 					txtVelocidade.setText("Pronto");
 				} else {
 					if (btnIniciar.getText().equals(getString(R.string.parar))) {
-						sendPosition(location);
+	
 						estatistica.update(location.getLatitude(), location.getLongitude(), location.getSpeed());
 						
 						txtVelocidade.setText(String.format("%.2f km/h", estatistica.getVelocidade()));
@@ -79,15 +89,35 @@ public class GPSActivity extends BaseActivity {
 						txtDistancia.setText(String.format("%.2f km", estatistica.getDistanciaTotal()));
 						txtCalorias.setText(String.format("%.2f", estatistica.getCalorias()));
 						txtTempo.setText(String.format("%.2f min", estatistica.getTempoTotal()));
+						txtLocation.setText(gpsService.getLastLocation().getLatitude() + 
+											";" +
+											gpsService.getLastLocation().getLongitude()); 
 					}
 				}		
 			}
 		});
-
-    	gpsService.start(this);
-		
+		gpsService.onActivityStarted();
+		gpsService.start(this);
 	}
-
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		gpsService.onActivityResumed();
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		gpsService.onActivityPaused();
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		gpsService.onActivityStopped();
+	}
+	
 	private void prepararTela() {
 		txtDistancia		= (TextView)findViewById(R.id.text_gps_distancia);
 		txtVelocidade		= (TextView)findViewById(R.id.text_gps_velocidade);
@@ -98,7 +128,8 @@ public class GPSActivity extends BaseActivity {
     	btnIniciar			= (Button)findViewById(R.id.button_gps_iniciar);
     	btnConvidar			= (Button)findViewById(R.id.button_gps_convidar);
     	webServiceTextView = (TextView) findViewById(R.id.text_web_service);
-
+    	txtLocation = (TextView) findViewById(R.id.text_locaton_gps);
+    	
     	btnIniciar.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View view) {
@@ -108,8 +139,8 @@ public class GPSActivity extends BaseActivity {
 					irParaTelaPostagem();
 				} else {
 					estatistica = new Estatistica(
-							gpsService.getUltimaLocalizacao().getLatitude(), 
-							gpsService.getUltimaLocalizacao().getLongitude());
+							gpsService.getLastLocation().getLatitude(), 
+							gpsService.getLastLocation().getLongitude());
 
 					btnIniciar.setText(getString(R.string.parar));
 				}
@@ -153,7 +184,6 @@ public class GPSActivity extends BaseActivity {
 	@Override
 	protected void onDestroy() {
 		gpsService.stop();
-		
 		super.onDestroy();
 	}
 	
@@ -220,4 +250,16 @@ public class GPSActivity extends BaseActivity {
 	    task.execute(new String[] { ServletUrl, latitude, longitude, email });
 
 	  }
+
+	 public void goToMap (View v) {
+		 	
+//	    	Intent i = new Intent(getApplicationContext(), MainMenuActivity.class);
+		 	Intent i  = new Intent(MainActivity.ACAO_EXIBIR_SAUDACAO);
+		 	i.addCategory(MainActivity.CATEGORIA_SAUDACAO);
+		 	i.putExtra(MainActivity.EXTRA_POSICAO_USUARIO, gpsService.getLastLocation().getLatitude() + 
+		 																							   ";" +
+		 													gpsService.getLastLocation().getLongitude());
+		 	gpsService.stop();
+			startActivity(i);
+	    }
 }
